@@ -1,0 +1,26 @@
+# Золотой набор (Задание 7)
+# Формат: expect=yes|no | вопрос | ключевые слова (через запятую, опционально)
+# Прогонять ПОСЛЕ: python scripts/prepare_gaps.py apply && python scripts/build_index.py
+#
+# expect=yes — тема есть в базе (бот должен ответить)
+# expect=no  — сущность удалена или никогда не существовала (бот → «Я не знаю»)
+
+# --- 8 известных тем (остались в базе) ---
+expect=yes | Кто пилотирует Nebula Runner? | jorik vane,nebula runner
+expect=yes | Где Elder Myrr обучал Kael Orin? | mistgrove
+expect=yes | Кто такая Seren Vahl? | seren vahl
+expect=yes | Что такое HyperRelay? | hyperrelay
+expect=yes | Что такое Prismara? | prismara
+expect=yes | Кто такой Overlord Krynn? | overlord krynn
+expect=yes | Что такое Fluxblade? | fluxblade
+expect=yes | Где находится Dusthaven? | sandveil,dusthaven
+
+# --- 3 удалённые сущности (пробелы) ---
+expect=no | Кто такой Xarn Velgor? |
+expect=no | Что такое Void Core? |
+expect=no | Что такое Synth Flux? |
+
+# --- 3 отсутствующие темы (никогда не было в базе) ---
+expect=no | Расскажи биографию Zara Quill из Aether Nexus |
+expect=no | Где планета Moonveil-9? |
+expect=no | Как устроен Quantum Loom? |

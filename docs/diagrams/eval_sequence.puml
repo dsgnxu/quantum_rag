@@ -1,0 +1,45 @@
+@startuml
+title Sequence: оценка покрытия RAG (Задание 7)
+
+actor Tester
+participant "evaluate.py" as Eval
+participant "RAG ask()" as RAG
+participant "FAISS retriever" as Ret
+participant "LLM / extractive\n(few-shot+CoT)" as LLM
+database "logs/queries.jsonl\nlogs/eval_results.*" as Logs
+
+Tester -> Eval : загрузить golden_questions.txt\n(expect=yes|no)
+
+loop для каждого вопроса
+  Eval -> RAG : question
+  RAG -> Ret : embedding + top_k search
+
+  alt сбой: пустой индекс / score < MIN_SCORE / entity mismatch
+    Ret --> RAG : []
+    RAG --> Eval : «Я не знаю»\nchunks_found=false
+  else найдены чанки
+    Ret --> RAG : chunks + scores + sources
+    RAG -> LLM : prompt (System CoT + Few-shot + CONTEXT)
+    alt сбой: пустой/невалидный чанк / LLM timeout
+      LLM --> RAG : fallback / error
+      RAG --> Eval : «Я не знаю» или ошибка
+    else ok
+      LLM --> RAG : answer + CoT steps
+      RAG --> Eval : answer + sources
+    end
+  end
+
+  Eval -> Logs : query, timestamp, chunks_found,\nanswer_length, success, sources
+  Eval -> Eval : сравнить с expect\n(ok / fail)
+end
+
+Eval --> Tester : coverage_report.md\n+ CSV/JSONL
+
+note right of Ret
+  Точки сбоя:
+  - нет faiss.index
+  - все score < порога
+  - сущности вопроса нет в чанках
+end note
+
+@enduml

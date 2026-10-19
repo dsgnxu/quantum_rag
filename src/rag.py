@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from src.config import MIN_SCORE, TOP_K
 from src.indexing import search
 from src.llm import generate
+from src.logging_utils import append_query_log
 from src.prompts import build_prompt
 
 ENTITY_RE = re.compile(r"\b[A-Z][A-Za-z0-9\-]{2,}\b")
@@ -16,10 +17,11 @@ def _entities(text: str) -> set[str]:
 
 
 def _chunks_support_entities(question: str, chunks: list[dict]) -> bool:
-    ents = {e for e in _entities(question) if len(e) >= 5}
+    ents = {e for e in _entities(question) if len(e) >= 4}
     if not ents:
         return True
     blob = " ".join(c.get("text", "") for c in chunks).lower()
+    # все токены сущности должны встретиться (иначе семантический «шум»)
     return all(e in blob for e in ents)
 
 
@@ -36,9 +38,9 @@ def ask(
     question: str,
     top_k: int = TOP_K,
     min_score: float = MIN_SCORE,
-    log: bool = False,
+    log: bool = True,
 ) -> RagResult:
-    """RAG-пайплайн: embed → FAISS → prompt (few-shot + CoT) → LLM/extractive."""
+    """RAG-пайплайн: embed → FAISS → prompt (few-shot + CoT) → ответ + лог."""
     retrieved = search(question, top_k=top_k)
     retrieved = [c for c in retrieved if c.get("score", 0) >= min_score]
 
@@ -51,21 +53,40 @@ def ask(
             "2. Релевантных фрагментов нет.\n"
             "3. Итоговый ответ: Я не знаю."
         )
-        return RagResult(
+        result = RagResult(
             answer=answer,
             sources=[],
             chunks_found=False,
             success=False,
             retrieved=[],
         )
+        if log:
+            _log(question, result)
+        return result
 
     prompt = build_prompt(question, retrieved, secure=True)
     answer = generate(prompt, question, retrieved)
     success = "я не знаю" not in answer.lower()
-    return RagResult(
+    result = RagResult(
         answer=answer,
         sources=[c.get("source", "") for c in retrieved],
         chunks_found=True,
         success=success,
         retrieved=retrieved,
+    )
+    if log:
+        _log(question, result)
+    return result
+
+
+def _log(question: str, result: RagResult) -> None:
+    append_query_log(
+        {
+            "query": question,
+            "chunks_found": result.chunks_found,
+            "answer_length": len(result.answer),
+            "success": result.success,
+            "sources": result.sources,
+            "answer_preview": result.answer[:300],
+        }
     )
