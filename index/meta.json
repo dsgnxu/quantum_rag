@@ -2,11 +2,11 @@
   "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
   "embedding_model_url": "https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
   "embedding_dim": 384,
-  "chunk_count": 37,
-  "document_count": 37,
+  "chunk_count": 39,
+  "document_count": 39,
   "chunk_size": 800,
   "chunk_overlap": 120,
   "vector_db": "FAISS (IndexFlatIP, cosine via L2-normalized embeddings)",
-  "build_seconds": 7.06,
+  "build_seconds": 5.7,
   "kb_dir": "knowledge_base/"
 }
