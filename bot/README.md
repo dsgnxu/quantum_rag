@@ -25,4 +25,5 @@ python bot/repl.py
 Опционально LLM: в `.env` задать `LLM_MODE=openai` и `OPENAI_API_KEY=...`
 
 ## Примеры диалогов
-См. `docs/task4_dialogs.md` (успешные ответы и «Я не знаю»).
+- Задание 4: `docs/task4_dialogs.md` (успешные ответы и «Я не знаю»).
+- Задание 5: `docs/task5_demo.md` (демонстрация, логи, injection, выводы).
