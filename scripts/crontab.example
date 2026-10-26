@@ -1,0 +1,15 @@
+# Задание 6 — ежедневное обновление индекса в 06:00
+# Установка: crontab -e  (подставьте абсолютный путь к проекту)
+
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+MAILTO=""
+
+# Каждый день в 06:00 UTC+локаль системы
+0 6 * * * cd /ABS/PATH/quantum_rag && . .venv/bin/activate && python scripts/update_index.py >> logs/cron_stdout.log 2>> logs/cron_stderr.log
+
+# При ошибке:
+#   - строка ERROR пишется в logs/index_update.log
+#   - stderr — в logs/cron_stderr.log
+#   - повтор — на следующем запуске cron (через сутки) или вручную:
+#     python scripts/update_index.py

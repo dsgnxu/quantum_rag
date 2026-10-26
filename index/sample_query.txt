@@ -1,0 +1,40 @@
+# Пример запросов к FAISS-индексу (Задание 3)
+
+## Запрос
+`Кто такой Xarn Velgor?`
+
+## Найденные чанки
+
+- **source:** `knowledge_base/xarn_velgor.md`  
+  **id:** `xarn_velgor::0`  **chunk_index:** 0  **score:** 0.627  
+  **text:** # Xarn Velgor  Xarn Velgor — Void Sovereign Dominion Sphere и правая рука Overlord Krynn. Ранее известен как Aric Orin, Flux Guardians Knight из Sandveil. После падения на Emberfall получил кибернетич...
+
+- **source:** `knowledge_base/master_thalos.md`  
+  **id:** `master_thalos::0`  **chunk_index:** 0  **score:** 0.467  
+  **text:** # Flux Elder Thalos  Flux Elder Thalos — Flux Guardians Flux Elder, ученик Sage Elowen и наставник Aric Orin. Воевал в Replica Wars вместе с Replica Ward подразделениями Республики. После превращения ...
+
+## Запрос
+`Что такое Void Core?`
+
+## Найденные чанки
+
+- **source:** `knowledge_base/void_core.md`  
+  **id:** `void_core::0`  **chunk_index:** 0  **score:** 0.706  
+  **text:** # Void Core  Void Core — боевая станция Dominion Sphere, способная уничтожить планету одним выстрелом. Оснащена суперлазером и защищена флотом Void Cruiser и Shade Dart. Планы станции были украдены Fr...
+
+- **source:** `knowledge_base/void_cruiser.md`  
+  **id:** `void_cruiser::0`  **chunk_index:** 0  **score:** 0.454  
+  **text:** # Void Cruiser  Void Cruiser — основной капитал-шип флота Dominion Sphere. Несёт Shade Dart, Null Sentinel и орбитальные орудия. Используется для блокад, бомбардировок и проекции силы. Флагманы сопров...
+
+## Запрос
+`Где обучался Kael Orin у Elder Myrr?`
+
+## Найденные чанки
+
+- **source:** `knowledge_base/kael_orin.md`  
+  **id:** `kael_orin::0`  **chunk_index:** 0  **score:** 0.614  
+  **text:** # Kael Orin  Kael Orin вырос на Sandveil у дяди и тёти, не зная о своём происхождении. После встречи с Flux Elder Thalos узнал о Synth Flux и получил fluxblade отца. Присоединился к Free Concord вмест...
+
+- **source:** `knowledge_base/elder_myrr.md`  
+  **id:** `elder_myrr::0`  **chunk_index:** 0  **score:** 0.534  
+  **text:** # Elder Myrr  Elder Myrr — великий Flux Elder Flux Conclave и один из сильнейших пользователей Synth Flux. Обучал поколения Flux Acolyte, включая Kael Orin на болотах Mistgrove. Говорит характерными и...

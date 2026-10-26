@@ -1,0 +1,15 @@
+query,result,sources,answer_length,status,expect,reason,chunks_found
+Кто пилотирует Nebula Runner?,success,knowledge_base/nebula_runner.md;knowledge_base/jorik_vane.md;knowledge_base/nebula_scout.md;knowledge_base/grothak.md,540,pass,yes,answered with keywords,True
+Где Elder Myrr обучал Kael Orin?,success,knowledge_base/kael_orin.md;knowledge_base/elder_myrr.md;knowledge_base/master_thalos.md;knowledge_base/sage_elowen.md,655,pass,yes,answered with keywords,True
+Кто такая Seren Vahl?,success,knowledge_base/seren_vahl.md;knowledge_base/lyra_vahl.md;knowledge_base/jorik_vane.md;knowledge_base/unit_pex7.md,574,pass,yes,answered with keywords,True
+Что такое HyperRelay?,success,knowledge_base/hyperrelay.md,562,pass,yes,answered with keywords,True
+Что такое Prismara?,success,knowledge_base/prismara.md;knowledge_base/crystalmere.md;knowledge_base/lumenara.md;knowledge_base/warden_korr.md,514,pass,yes,answered with keywords,True
+Кто такой Overlord Krynn?,success,knowledge_base/overlord_krynn.md;knowledge_base/warden_korr.md;knowledge_base/grothak.md;knowledge_base/lyra_vahl.md,618,pass,yes,answered with keywords,True
+Что такое Fluxblade?,success,knowledge_base/fluxblade.md;knowledge_base/elder_myrr.md;knowledge_base/flux_conclave.md;knowledge_base/mistgrove.md,553,pass,yes,answered with keywords,True
+Где находится Dusthaven?,success,knowledge_base/dusthaven.md;knowledge_base/sandveil.md;knowledge_base/frostspire.md,469,pass,yes,answered with keywords,True
+Кто такой Xarn Velgor?,unknown,,99,pass,no,correctly unknown,False
+Что такое Void Core?,unknown,,99,pass,no,correctly unknown,False
+Что такое Synth Flux?,unknown,,99,pass,no,correctly unknown,False
+Расскажи биографию Zara Quill из Aether Nexus,unknown,,99,pass,no,correctly unknown,False
+Где планета Moonveil-9?,unknown,,99,pass,no,correctly unknown,False
+Как устроен Quantum Loom?,unknown,,99,pass,no,correctly unknown,False
